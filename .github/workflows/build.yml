@@ -4,6 +4,7 @@ on:
   push:
     branches: [main]
   pull_request:
+  workflow_dispatch:
 
 permissions:
   contents: read
@@ -11,9 +12,6 @@ permissions:
 jobs:
   build:
     runs-on: ubuntu-latest
-    defaults:
-      run:
-        working-directory: CYBERCORE
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-python@v5
@@ -25,12 +23,68 @@ jobs:
             ~/.platformio
             CYBERCORE/.pio/libdeps
           key: pio-${{ hashFiles('CYBERCORE/platformio.ini') }}
-      - name: Install PlatformIO
-        run: pip install platformio
+      - name: Install PlatformIO and esptool
+        run: pip install platformio esptool
       - name: Build (cyd2usb)
+        working-directory: CYBERCORE
         run: pio run -e cyd2usb
+
+      # One image at offset 0 for the browser flasher (ESP Web Tools).
+      - name: Merge bootloader, partitions and app
+        run: |
+          B=CYBERCORE/.pio/build/cyd2usb
+          BOOT_APP0=~/.platformio/packages/framework-arduinoespressif32/tools/partitions/boot_app0.bin
+          python -m esptool --chip esp32 merge_bin -o cybercore-cyd2usb.bin \
+            --flash_mode dio --flash_freq 40m --flash_size 4MB \
+            0x1000 $B/bootloader.bin 0x8000 $B/partitions.bin 0xe000 $BOOT_APP0 0x10000 $B/firmware.bin
+          python -m esptool image_info cybercore-cyd2usb.bin | head -5 || true
+
+      - name: Assemble flasher site
+        run: |
+          VERSION=$(grep -oP 'FW_VERSION "\K[^"]+' CYBERCORE/src/config.h)
+          BUILD="${GITHUB_SHA::7}"
+          mkdir -p site/img
+          cp web/index.html site/index.html
+          sed -i "s/__VERSION__/$VERSION/; s/__BUILD__/$BUILD/" site/index.html
+          cp CYBERCORE/docs/img/*.png site/img/
+          cp cybercore-cyd2usb.bin site/
+          cat > site/manifest.json <<EOF
+          {
+            "name": "CYBERCORE",
+            "version": "$VERSION ($BUILD)",
+            "new_install_prompt_erase": true,
+            "builds": [
+              { "chipFamily": "ESP32", "parts": [{ "path": "cybercore-cyd2usb.bin", "offset": 0 }] }
+            ]
+          }
+          EOF
+          python -c "import json; json.load(open('site/manifest.json'))"
+
       - name: Upload firmware
         uses: actions/upload-artifact@v4
         with:
           name: cybercore-cyd2usb
-          path: CYBERCORE/.pio/build/cyd2usb/*.bin
+          path: |
+            cybercore-cyd2usb.bin
+            CYBERCORE/.pio/build/cyd2usb/*.bin
+      - uses: actions/upload-pages-artifact@v3
+        if: github.event_name != 'pull_request'
+        with:
+          path: site
+
+  deploy:
+    needs: build
+    if: github.ref == 'refs/heads/main' && github.event_name != 'pull_request'
+    runs-on: ubuntu-latest
+    permissions:
+      pages: write
+      id-token: write
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    concurrency:
+      group: pages
+      cancel-in-progress: true
+    steps:
+      - id: deployment
+        uses: actions/deploy-pages@v4

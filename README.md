@@ -46,6 +46,13 @@
 
 ## التشغيل السريع
 
+### ⚡ من المتصفح (بدون تثبيت أي برنامج)
+
+افتح **[youssef840.github.io/cybercore](https://youssef840.github.io/cybercore/)** من Chrome أو Edge على الكمبيوتر،
+وصّل اللوحة بـ USB واضغط «تثبيت على اللوحة». الفيرموير في الصفحة يُبنى تلقائياً من آخر نسخة في `main`.
+
+### من الكود (PlatformIO)
+
 ```bash
 pip install platformio
 cd CYBERCORE

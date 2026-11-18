@@ -1,0 +1,156 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>CYBERCORE · تثبيت من المتصفح</title>
+  <meta name="description" content="ثبّت فيرموير CYBERCORE على لوحة ESP32 Cheap Yellow Display مباشرة من المتصفح.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Arabic:wght@400;600;700&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet">
+  <script type="module" src="https://unpkg.com/esp-web-tools@10.1.0/dist/web/install-button.js?module"></script>
+  <style>
+    :root {
+      --bg: #050a07;
+      --panel: #0b1510;
+      --line: #163322;
+      --green: #2bff88;
+      --green-dim: #1fae5f;
+      --text: #d7f5e3;
+      --muted: #7fa892;
+      --warn: #ffb84d;
+      --radius: 14px;
+    }
+    * { box-sizing: border-box; }
+    html { -webkit-text-size-adjust: 100%; }
+    body {
+      margin: 0;
+      background: var(--bg);
+      background-image: radial-gradient(circle at 80% -10%, rgba(43, 255, 136, 0.12), transparent 45%),
+        linear-gradient(rgba(43, 255, 136, 0.035) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(43, 255, 136, 0.035) 1px, transparent 1px);
+      background-size: auto, 28px 28px, 28px 28px;
+      color: var(--text);
+      font: 16px/1.75 "IBM Plex Sans Arabic", system-ui, sans-serif;
+    }
+    a { color: var(--green); }
+    .wrap { max-width: 980px; margin: 0 auto; padding: 0 16px; }
+    header { padding: 56px 0 28px; }
+    .tag { font-family: "JetBrains Mono", monospace; color: var(--green-dim); font-size: 13px; letter-spacing: 0.08em; }
+    h1 {
+      margin: 6px 0 10px;
+      font: 700 clamp(38px, 8vw, 64px)/1.05 "JetBrains Mono", monospace;
+      color: var(--green);
+      text-shadow: 0 0 24px rgba(43, 255, 136, 0.35);
+      direction: ltr;
+      text-align: right;
+    }
+    .lead { font-size: 19px; color: var(--text); max-width: 640px; margin: 0; }
+    .grid { display: grid; grid-template-columns: 1.1fr 0.9fr; gap: 20px; margin: 28px 0; }
+    .card {
+      background: var(--panel);
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      padding: 24px;
+    }
+    .install h2, .card h2 { margin: 0 0 12px; font-size: 21px; }
+    esp-web-install-button { display: inline-block; margin: 8px 0 14px; }
+    .btn {
+      display: inline-flex; align-items: center; gap: 10px;
+      background: var(--green); color: #03150a; border: 0; border-radius: 10px;
+      padding: 14px 26px; font: 700 18px "IBM Plex Sans Arabic", sans-serif; cursor: pointer;
+      box-shadow: 0 0 0 4px rgba(43, 255, 136, 0.15), 0 10px 30px rgba(43, 255, 136, 0.18);
+    }
+    .btn:hover { filter: brightness(1.08); }
+    .note { color: var(--muted); font-size: 14px; margin: 0; }
+    .bad { color: var(--warn); font-weight: 600; }
+    ol { margin: 0; padding-inline-start: 22px; }
+    ol li { margin: 6px 0; }
+    .warn {
+      border: 1px solid rgba(255, 184, 77, 0.35);
+      background: rgba(255, 184, 77, 0.07);
+      border-radius: var(--radius);
+      padding: 16px 20px;
+      margin: 0 0 28px;
+    }
+    .warn strong { color: var(--warn); }
+    .warn pre {
+      font-family: "JetBrains Mono", monospace; font-size: 13px; text-align: left;
+      background: #0f2017; border-radius: 8px; padding: 10px 12px; margin: 10px 0; overflow-x: auto;
+    }
+    code { font-family: "JetBrains Mono", monospace; font-size: 0.9em; background: #0f2017; padding: 1px 6px; border-radius: 6px; direction: ltr; unicode-bidi: embed; }
+    .shots { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; margin: 12px 0 36px; }
+    .shots figure { margin: 0; }
+    .shots img { width: 100%; height: auto; display: block; border-radius: 10px; border: 1px solid var(--line); background: #000; }
+    .shots figcaption { text-align: center; color: var(--muted); font-size: 14px; margin-top: 6px; }
+    .meta { font-family: "JetBrains Mono", monospace; font-size: 13px; color: var(--muted); direction: ltr; text-align: right; }
+    footer { border-top: 1px solid var(--line); padding: 22px 0 40px; color: var(--muted); font-size: 14px; }
+    @media (max-width: 760px) {
+      header { padding-top: 36px; }
+      .grid { grid-template-columns: 1fr; }
+      .shots { grid-template-columns: repeat(2, 1fr); }
+    }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <header>
+      <div class="tag">ESP32 · CHEAP YELLOW DISPLAY · v__VERSION__</div>
+      <h1>CYBERCORE</h1>
+      <p class="lead">فيرموير عربي لأمن وتشخيص الشبكات اللاسلكية — ثبّته على لوحتك مباشرة من المتصفح، بدون تثبيت أي برنامج.</p>
+    </header>
+
+    <div class="grid">
+      <section class="card install">
+        <h2>⚡ التثبيت بضغطة</h2>
+        <esp-web-install-button manifest="manifest.json">
+          <button slot="activate" class="btn">تثبيت على اللوحة</button>
+          <span slot="unsupported" class="bad">متصفحك لا يدعم التثبيت. استخدم Chrome أو Edge على الكمبيوتر.</span>
+          <span slot="not-allowed" class="bad">يجب فتح الصفحة عبر HTTPS.</span>
+        </esp-web-install-button>
+        <p class="note">يعمل على <b>Chrome</b> و<b>Edge</b> على الكمبيوتر (Windows / macOS / Linux). لا يعمل على الجوال أو Firefox/Safari.</p>
+      </section>
+
+      <section class="card">
+        <h2>الخطوات</h2>
+        <ol>
+          <li>وصّل اللوحة بالكمبيوتر بكابل USB يدعم البيانات.</li>
+          <li>اضغط <b>«تثبيت على اللوحة»</b> واختر منفذ اللوحة من القائمة.</li>
+          <li>وافق على التثبيت وانتظر حتى يكتمل (دقيقة تقريباً).</li>
+          <li>ستعيد اللوحة التشغيل وتظهر واجهة CYBERCORE.</li>
+        </ol>
+      </section>
+    </div>
+
+    <div class="warn">
+      <strong>⚠️ قبل التثبيت:</strong> سيتم استبدال الفيرموير الحالي على اللوحة ومسح إعداداتها. إذا أردت الاحتفاظ بالنسخة الحالية،
+      احفظها أولاً (استبدل <code>COM4</code> بمنفذ لوحتك):
+      <pre dir="ltr">python -m esptool --port COM4 read_flash 0 0x400000 backup.bin</pre>
+      لا يظهر المنفذ؟ ثبّت تعريف <a href="https://www.wch-ic.com/downloads/CH341SER_EXE.html" rel="noopener">CH340</a> أو
+      <a href="https://www.silabs.com/developers/usb-to-uart-bridge-vcp-drivers" rel="noopener">CP210x</a> حسب شريحة لوحتك.
+    </div>
+
+    <h2>لقطات من الجهاز</h2>
+    <div class="shots">
+      <figure><img src="img/menu.png" alt="القائمة الرئيسية" loading="lazy"><figcaption>القائمة الرئيسية</figcaption></figure>
+      <figure><img src="img/scan.png" alt="ماسح الشبكات" loading="lazy"><figcaption>ماسح الشبكات</figcaption></figure>
+      <figure><img src="img/deauth.png" alt="كاشف الفصل" loading="lazy"><figcaption>كاشف الفصل</figcaption></figure>
+      <figure><img src="img/channel.png" alt="محلل القنوات" loading="lazy"><figcaption>محلل القنوات</figcaption></figure>
+      <figure><img src="img/ble.png" alt="ماسح بلوتوث" loading="lazy"><figcaption>ماسح بلوتوث</figcaption></figure>
+      <figure><img src="img/settings.png" alt="الإعدادات" loading="lazy"><figcaption>الإعدادات</figcaption></figure>
+    </div>
+
+    <section class="card" style="margin-bottom:28px">
+      <h2>ماذا يفعل؟</h2>
+      <p style="margin:0">مسح الشبكات وتدقيق حمايتها، كشف هجمات الفصل والشبكات المزيّفة (Evil-Twin)، تحليل القنوات والبلوتوث،
+      وأكثر من 26 أداة تشخيص (DNS، حساب الشبكات، بصمات SHA-256). <b>كل الأدوات دفاعية وسلبية</b> — لا يحتوي الفيرموير أي هجوم.
+      استعمله على شبكاتك وأجهزتك فقط.</p>
+    </section>
+
+    <footer>
+      <div class="meta">build __BUILD__ · <a href="https://github.com/Youssef840/cybercore">github.com/Youssef840/cybercore</a></div>
+      <div>MIT © 2026 Youssef Hussein · الدليل الكامل: <a href="https://github.com/Youssef840/cybercore/blob/main/CYBERCORE/docs/CYBERCORE_Guide_AR.pdf">PDF عربي</a></div>
+    </footer>
+  </div>
+</body>
+</html>
