@@ -1,0 +1,319 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="utf-8">
+<title>CYBERCORE — الدليل التفصيلي</title>
+<style>
+  :root{
+    --bg:#05090a; --panel:#0a1512; --panel2:#0d1f18; --edge:#0f3d28;
+    --fg:#d9ffe6; --green:#2ee66a; --green2:#13b24a; --dim:#5f9e78;
+    --cyan:#49f0d0; --warn:#ffd23c; --alert:#ff4d63;
+  }
+  *{ box-sizing:border-box; }
+  html,body{ margin:0; padding:0; background:var(--bg); color:var(--fg);
+    font-family:"Tahoma","Segoe UI","Arial",sans-serif; line-height:1.9; font-size:13.5px;
+    -webkit-print-color-adjust:exact; print-color-adjust:exact; }
+  @page{ size:A4; margin:14mm 12mm; }
+  .page{ padding:0 4mm; }
+  .break{ page-break-before:always; }
+  h1,h2,h3{ color:var(--green); line-height:1.4; }
+  h2{ font-size:20px; border-bottom:2px solid var(--edge); padding-bottom:6px; margin-top:26px;
+      page-break-after:avoid; }
+  h2::before{ content:"▍"; color:var(--cyan); margin-left:8px; }
+  h3{ font-size:15.5px; color:var(--cyan); margin:18px 0 4px; page-break-after:avoid; }
+  code{ font-family:"Consolas","Courier New",monospace; direction:ltr; unicode-bidi:embed;
+      background:var(--panel2); color:var(--cyan); padding:1px 6px; border-radius:4px; font-size:12px; }
+  pre{ background:#071210; border:1px solid var(--edge); border-radius:8px; padding:10px 12px;
+      direction:ltr; text-align:left; overflow:auto; color:var(--fg); font-size:12px;
+      font-family:"Consolas","Courier New",monospace; }
+  a{ color:var(--cyan); }
+  table{ width:100%; border-collapse:collapse; margin:8px 0; font-size:12.5px; }
+  th,td{ border:1px solid var(--edge); padding:6px 9px; text-align:right; vertical-align:top; }
+  th{ background:var(--panel2); color:var(--green); }
+  tr:nth-child(even) td{ background:#081210; }
+  td .fn{ color:var(--fg); }
+  td .ex{ display:block; color:var(--cyan); margin-top:4px; font-size:12px; }
+  td .ex b{ color:var(--warn); }
+  td.name{ color:var(--green); font-weight:bold; white-space:nowrap; width:130px; }
+  .tag{ display:inline-block; background:var(--panel2); border:1px solid var(--edge);
+      color:var(--green); border-radius:20px; padding:1px 10px; font-size:11px; margin:2px; }
+  .box{ background:var(--panel); border:1px solid var(--edge); border-radius:10px; padding:10px 14px;
+      margin:12px 0; }
+  .warn{ border-color:#5a4a10; background:#15120a; }
+  .warn h3{ color:var(--warn); margin-top:2px; }
+  .alert{ border-color:#5a1420; background:#160a0d; }
+  .alert h3{ color:var(--alert); margin-top:2px; }
+  ul{ margin:6px 24px 10px 0; padding:0; }
+  li{ margin:3px 0; }
+  .lead{ color:var(--dim); font-size:12px; }
+  .cover{ height:247mm; display:flex; flex-direction:column; justify-content:center; align-items:center;
+      text-align:center; page-break-after:always; }
+  .logo{ font-size:62px; font-weight:bold; letter-spacing:8px; color:var(--green);
+      text-shadow:0 0 18px rgba(46,230,106,.5); }
+  .logo .c{ color:var(--cyan); }
+  .sub{ color:var(--cyan); font-size:20px; margin-top:6px; letter-spacing:2px; }
+  .cover .ar{ font-size:26px; color:var(--fg); margin-top:18px; }
+  .cover .meta{ margin-top:30px; color:var(--dim); font-size:13px; }
+  .rule{ width:60%; height:2px; margin:24px 0;
+      background:linear-gradient(90deg,transparent,var(--green),transparent); }
+  .pill{ border:1px solid var(--edge); border-radius:30px; padding:6px 18px; color:var(--green);
+      background:var(--panel); margin-top:20px; font-size:13px; }
+  .toc li{ margin:5px 0; }
+  .num{ color:var(--cyan); font-weight:bold; }
+  .k{ color:var(--warn); }
+  .foot{ color:var(--dim); font-size:11px; text-align:center; margin-top:30px;
+      border-top:1px solid var(--edge); padding-top:10px; }
+  .shots{ display:grid; grid-template-columns:1fr 1fr; gap:14px 18px; margin:14px 0; }
+  .shot{ background:#060d0b; border:1px solid var(--edge); border-radius:10px; padding:8px;
+      text-align:center; page-break-inside:avoid; }
+  .shot img{ width:100%; border:1px solid #06120e; border-radius:4px; display:block; }
+  .shot .cap{ color:var(--cyan); font-size:12px; margin-top:6px; }
+</style>
+</head>
+<body>
+
+<!-- COVER -->
+<div class="cover">
+  <div class="logo"><span class="c">[</span> CYBER<span class="c">CORE</span> <span class="c">]</span></div>
+  <div class="sub">v2.0.0 — RF / NET DEFENSE TOOLKIT</div>
+  <div class="rule"></div>
+  <div class="ar">أداة أمن شبكات محمولة — فيرموير عربي للوحة ESP32</div>
+  <div class="pill">واجهة عربية كاملة · لمس · 27 أداة رئيسية + 26 أداة متقدمة · دفاعية بالكامل</div>
+  <div class="meta">
+    اللوحة: ESP32-2432S028R «Cheap Yellow Display»<br>
+    دليل الاستعمال — شرح الواجهة وكل أداة ومثال كيف تستفيد منها
+  </div>
+</div>
+
+<div class="page">
+<h2>المحتويات</h2>
+<ul class="toc">
+  <li><span class="num">1.</span> نظرة عامة والحدود الأخلاقية</li>
+  <li><span class="num">★</span> معرض الشاشات</li>
+  <li><span class="num">2.</span> المواصفات والعتاد وجدول التوصيلات</li>
+  <li><span class="num">3.</span> التركيب والبناء والرفع</li>
+  <li><span class="num">4.</span> شرح الواجهة والتحكم</li>
+  <li><span class="num">5.</span> أدوات الواي فاي — مع أمثلة الفائدة</li>
+  <li><span class="num">6.</span> أدوات البلوتوث — مع أمثلة الفائدة</li>
+  <li><span class="num">7.</span> أدوات المعمل والأدوات العامة</li>
+  <li><span class="num">8.</span> المختبر المتقدم (26 أداة)</li>
+  <li><span class="num">9.</span> الإعدادات وحفظ النتائج على SD</li>
+  <li><span class="num">10.</span> ملاحظات تقنية والترخيص</li>
+</ul>
+
+<!-- 1 -->
+<h2 id="s1">1 · نظرة عامة</h2>
+<p><b>CYBERCORE</b> فيرموير عربي مستقل بالكامل، يحوّل لوحة ESP32 بشاشة لمس إلى
+<b>أداة جيب لفحص وتشخيص وأمن الشبكات اللاسلكية</b>. كل الواجهة والنتائج بالعربية.</p>
+<div class="box alert">
+  <h3>⚠ الحدود الأخلاقية — مهم</h3>
+  <p>كل مميزات CYBERCORE <b>دفاعية / سلبية فقط</b>: مسح، رصد، تدقيق، تشخيص. <b>لا يوجد</b> أي هجوم —
+  لا فصل هجومي، لا إغراق، ولا بوابات وهمية لسرقة كلمات السر. حتى «كاشف الفصل» <b>يرصد</b> الهجوم بدل أن
+  يشنّه. استعمله على شبكاتك وأجهزتك فقط والتزم بقوانين بلدك.</p>
+</div>
+
+<!-- GALLERY -->
+<div class="break"></div>
+<h2 id="shots">★ معرض الشاشات</h2>
+<p class="lead">صور حقيقية ملتقطة مباشرة من شاشة اللوحة (أخضر هكر على أسود).</p>
+<div class="shots">
+  <div class="shot"><img src="img/menu.png"><div class="cap">القائمة الرئيسية — شبكة أيقونات</div></div>
+  <div class="shot"><img src="img/scan.png"><div class="cap">ماسح الشبكات</div></div>
+  <div class="shot"><img src="img/channel.png"><div class="cap">محلل القنوات</div></div>
+  <div class="shot"><img src="img/deauth.png"><div class="cap">كاشف الفصل (رصد سلبي)</div></div>
+  <div class="shot"><img src="img/ble.png"><div class="cap">ماسح بلوتوث</div></div>
+  <div class="shot"><img src="img/settings.png"><div class="cap">الإعدادات: ثيمات + ترتيب الألوان</div></div>
+  <div class="shot"><img src="img/qr.png"><div class="cap">مولّد رمز QR</div></div>
+  <div class="shot"><img src="img/sysinfo.png"><div class="cap">معلومات النظام</div></div>
+</div>
+
+<!-- 2 -->
+<div class="break"></div>
+<h2 id="s2">2 · المواصفات والعتاد</h2>
+<table>
+  <tr><th>العنصر</th><th>التفصيل</th></tr>
+  <tr><td class="name">اللوحة</td><td>CYD-2USB = ESP32-2432S028R «Cheap Yellow Display»</td></tr>
+  <tr><td class="name">المعالج</td><td>ESP32-D0WD-V3 · نواتان · 240MHz · WiFi + Bluetooth</td></tr>
+  <tr><td class="name">الذاكرة</td><td>فلاش 4MB (الفيرموير يستهلك ~57%)</td></tr>
+  <tr><td class="name">الشاشة</td><td>ILI9341 مقاس 2.8" · 320×240 · ناقل HSPI</td></tr>
+  <tr><td class="name">اللمس</td><td>XPT2046 مقاوم (أطراف مستقلة)</td></tr>
+  <tr><td class="name">تخزين</td><td>فتحة microSD (ناقل VSPI)</td></tr>
+  <tr><td class="name">إضافات</td><td>LED RGB · زر BOOT · منفذ هيدر (I2C / ADC / CC1101)</td></tr>
+</table>
+<h3>جدول التوصيلات (Pinout)</h3>
+<table>
+  <tr><th>الوظيفة</th><th>الأطراف (GPIO)</th></tr>
+  <tr><td class="name">الشاشة TFT (HSPI)</td><td>MOSI=13 · MISO=12 · SCLK=14 · CS=15 · DC=2 · RST=-1 · BL=21</td></tr>
+  <tr><td class="name">اللمس XPT2046</td><td>CLK=25 · MOSI=32 · MISO=39 · CS=33 · IRQ=36</td></tr>
+  <tr><td class="name">بطاقة microSD</td><td>مشتركة على VSPI · CS=5</td></tr>
+  <tr><td class="name">I2C (هيدر)</td><td>SDA=22 · SCL=27</td></tr>
+  <tr><td class="name">قياس جهد ADC</td><td>GPIO35 (دخل فقط)</td></tr>
+  <tr><td class="name">زر الرجوع</td><td>BOOT = GPIO0</td></tr>
+</table>
+
+<!-- 3 -->
+<h2 id="s3">3 · التركيب والبناء والرفع</h2>
+<pre>pip install platformio
+cd CYBERCORE
+python -m platformio run -e cyd2usb -t upload --upload-port COM4   # رفع (المنفذ حسب جهازك)
+python -m platformio run -e cyd2usb                                # بناء فقط</pre>
+<div class="box warn">
+  <h3>تنبيه لمستخدمي ويندوز</h3>
+  <p>ضع المشروع في <b>مسار قصير</b> (مثل <code>C:\dev\CYBERCORE</code>). المسارات الطويلة جداً تُفشل المترجم.</p>
+</div>
+<p class="lead">المكتبات: <span class="tag">TFT_eSPI</span> <span class="tag">SmartRC-CC1101</span>
+<span class="tag">QRCode</span> <span class="tag">ESP32Ping</span> — كلها تتنزّل تلقائياً. إعدادات الشاشة في
+<code>platformio.ini</code>.</p>
+
+<!-- 4 -->
+<div class="break"></div>
+<h2 id="s4">4 · شرح الواجهة والتحكم</h2>
+<p>الواجهة <b>شبكة أيقونات</b>، كلها باللمس:</p>
+<ul>
+  <li><b>الفتح:</b> انقر أي أيقونة أو عنصر ليُفتح.</li>
+  <li><b>الرجوع:</b> اضغط زر <b>BOOT</b> على اللوحة، أو سهم «‹» أعلى يسار الشاشة.</li>
+  <li><b>شريط الأزرار السفلي (الفوتر):</b> يتغيّر حسب الأداة — عادةً <span class="k">تحديث</span> /
+  <span class="k">أعلى</span> / <span class="k">أسفل</span> / <span class="k">حفظ SD</span>. تنقر الزر مباشرة.</li>
+  <li><b>التصفّح في القوائم الطويلة:</b> أزرار «أعلى / أسفل» في الفوتر.</li>
+  <li><b>لوحة المفاتيح:</b> تظهر عند الحاجة لإدخال (كلمة سر، عنوان، منفذ) — حروف وأرقام ورموز و Shift.</li>
+  <li><b>الهيدر (أعلى الشاشة):</b> اسم الأداة + ساعة التشغيل + حالة مختصرة.</li>
+</ul>
+<p class="lead">أول مرة؟ ابدأ من «معلومات النظام» للتأكد أن كل شيء يعمل، ثم «الإعدادات» لضبط السطوع
+واللون، ثم جرّب «الواي فاي ← ماسح الشبكات».</p>
+
+<!-- 5 -->
+<div class="break"></div>
+<h2 id="s5">5 · أدوات الواي فاي <span class="lead">(13 أداة)</span></h2>
+<table>
+  <tr><th>الأداة</th><th>ماذا تفعل · ومثال كيف تستفيد</th></tr>
+  <tr><td class="name">ماسح الشبكات</td><td><span class="fn">يعرض كل الشبكات حولك: الاسم، قوة الإشارة (أعمدة + dBm)، القناة، نوع التشفير.</span>
+    <span class="ex"><b>مثال:</b> تكتشف شبكة غريبة ظهرت قرب بيتك، أو تعرف أي مكان في البيت إشارة راوترك فيه أقوى.</span></td></tr>
+  <tr><td class="name">تدقيق الحماية</td><td><span class="fn">يصنّف شبكاتك (ممتاز/جيد/ضعيف/خطر) حسب التشفير.</span>
+    <span class="ex"><b>مثال:</b> تتأكد أن شبكتك على WPA2/WPA3 وليست WEP قديمة قابلة للاختراق، وتنبّه لو إحدى شبكاتك مفتوحة.</span></td></tr>
+  <tr><td class="name">محلل القنوات</td><td><span class="fn">رسم بياني لعدد الشبكات في كل قناة (1–13) ويبرز الأزحم.</span>
+    <span class="ex"><b>مثال:</b> النت بطيء؟ تشوف القناة المزدحمة وتغيّر راوترك لقناة فاضية (1/6/11) فيتحسّن الأداء والسرعة.</span></td></tr>
+  <tr><td class="name">كاشف الفصل</td><td><span class="fn">يراقب الجو عبر القنوات ويعدّ إطارات الفصل (deauth)، دفاعي لا يُرسل شيئاً.</span>
+    <span class="ex"><b>مثال:</b> نتك ينقطع فجأة ومتكرر؟ شغّله — لو عدّ إطارات فصل كثيرة فأحدٌ يحاول فصل أجهزتك عن الشبكة.</span></td></tr>
+  <tr><td class="name">كاشف التوأم</td><td><span class="fn">يرصد وجود نفس اسم الشبكة ببصمتين MAC مختلفتين (Evil-Twin).</span>
+    <span class="ex"><b>مثال:</b> في مقهى أو مطار، تتأكد أن شبكة «Free WiFi» ما لها نسخة مزيّفة نصبها أحدهم لسرقة بياناتك.</span></td></tr>
+  <tr><td class="name">محلل الحركة</td><td><span class="fn">يعدّ كل الإطارات اللاسلكية ويعرض معدلها الحي + رسم نشاط.</span>
+    <span class="ex"><b>مثال:</b> تعرف مدى ازدحام الأثير حولك وأي قناة مشغولة فعلياً بالحركة (مو بس بعدد الشبكات).</span></td></tr>
+  <tr><td class="name">اتصال وأدوات</td><td><span class="fn">تتصل بشبكتك (تختارها وتكتب السر) ثم: معلومات IP/بوابة/DNS، ping، فحص أجهزة الشبكة، فحص بورتات.</span>
+    <span class="ex"><b>مثال:</b> تكتشف كم جهاز متصل بشبكتك ولو فيه جهاز غريب (متطفّل)، وتتأكد أن راوترك يستجيب بزمن جيد.</span></td></tr>
+  <tr><td class="name">شبكات مخفية</td><td><span class="fn">يكشف الشبكات التي تخفي اسمها (hidden SSID).</span>
+    <span class="ex"><b>مثال:</b> تكتشف شبكة مخفية يشغّلها أحد الجيران، أو تتأكد أن شبكتك المخفية فعلاً لا يظهر اسمها.</span></td></tr>
+  <tr><td class="name">PMF / WPS</td><td><span class="fn">تدقيق الإطارات المحمية PMF (802.11w) و WPS.</span>
+    <span class="ex"><b>مثال:</b> تتأكد أن شبكتك محمية ضد هجوم الفصل (PMF مفعّل) وأن WPS مقفل — لأنه ثغرة شهيرة لكسر كلمة السر.</span></td></tr>
+  <tr><td class="name">فحص خدمات</td><td><span class="fn">يفحص الخدمات/المنافذ المفتوحة على أجهزة شبكتك.</span>
+    <span class="ex"><b>مثال:</b> تكتشف كاميرا أو طابعة أو جهاز إنترنت أشياء فيه منفذ مفتوح قد يكون نقطة ضعف تحتاج إغلاقها.</span></td></tr>
+  <tr><td class="name">تشخيص DNS</td><td><span class="fn">استعلامات DNS لتشخيص دقّة وسرعة خادم الأسماء.</span>
+    <span class="ex"><b>مثال:</b> المواقع تفتح ببطء؟ تختبر سرعة خادم DNS وتقرّر تغييره (مثلاً لـ Cloudflare 1.1.1.1 أو Google 8.8.8.8).</span></td></tr>
+  <tr><td class="name">مراقب التغير</td><td><span class="fn">يراقب شبكاتك ويبلّغ عند ظهور/اختفاء نقطة وصول أو تغيّر قناة.</span>
+    <span class="ex"><b>مثال:</b> تتركه يراقب، فينبّهك لو ظهرت نقطة وصول جديدة فجأة (قد تكون جهاز تجسس) أو اختفت شبكتك.</span></td></tr>
+  <tr><td class="name">رؤوس HTTP</td><td><span class="fn">يفحص ترويسات HTTP للخوادم المحلية.</span>
+    <span class="ex"><b>مثال:</b> تفحص صفحة إدارة راوترك أو كاميرتك وتعرف نوع الخادم وإعدادات الأمان من الترويسات.</span></td></tr>
+</table>
+
+<!-- 6 -->
+<div class="break"></div>
+<h2 id="s6">6 · أدوات البلوتوث <span class="lead">(4 أدوات)</span></h2>
+<table>
+  <tr><th>الأداة</th><th>ماذا تفعل · ومثال كيف تستفيد</th></tr>
+  <tr><td class="name">ماسح بلوتوث</td><td><span class="fn">يعرض أجهزة BLE القريبة: الاسم، العنوان، قوة الإشارة.</span>
+    <span class="ex"><b>مثال:</b> تكتشف الأجهزة حولك (سماعات، ساعات، أجهزة تتبّع Tags) وتعرف كم جهاز يبثّ قربك.</span></td></tr>
+  <tr><td class="name">رادار بلوتوث</td><td><span class="fn">يعرض أقرب جهاز كنقطة على رادار تتحرّك حسب قوة الإشارة.</span>
+    <span class="ex"><b>مثال:</b> فقدت سماعتك أو جهاز تتبّع؟ تتبّع إشارته — كلما اقتربت قويت النقطة حتى تجده.</span></td></tr>
+  <tr><td class="name">مراقب جهاز</td><td><span class="fn">يتتبّع جهازاً معيّناً باستمرار ويعرض تغيّر إشارته.</span>
+    <span class="ex"><b>مثال:</b> تعرف لو جهاز معيّن (ساعة/هاتف) دخل نطاقك أو ابتعد — مفيد لمعرفة الحضور/الغياب.</span></td></tr>
+  <tr><td class="name">تحليل إعلان</td><td><span class="fn">يحلّل تفاصيل إعلان BLE (advertisement) للجهاز.</span>
+    <span class="ex"><b>مثال:</b> تعرف نوع الجهاز وما البيانات التي يعلنها للعلن (الشركة المصنّعة، الخدمات…).</span></td></tr>
+</table>
+
+<!-- 7 -->
+<h2 id="s7">7 · أدوات المعمل والأدوات العامة</h2>
+<h3>المعمل (عتاد)</h3>
+<table>
+  <tr><th>الأداة</th><th>ماذا تفعل · ومثال كيف تستفيد</th></tr>
+  <tr><td class="name">ماسح I2C</td><td><span class="fn">يفحص ناقل I2C (SDA=22, SCL=27) ويعرض عناوين الوحدات الموصولة.</span>
+    <span class="ex"><b>مثال:</b> وصّلت حسّاس حرارة/ضغط وما اشتغل؟ تتأكد أنه متصل كهربائياً وتعرف عنوانه للبرمجة.</span></td></tr>
+  <tr><td class="name">مقياس جهد</td><td><span class="fn">يقرأ الجهد التناظري على GPIO35 (حتى 3.3V) + رسم حي.</span>
+    <span class="ex"><b>مثال:</b> تقيس جهد بطارية أو مخرج حسّاس بسرعة بدون أفوميتر.</span></td></tr>
+  <tr><td class="name">كشّاف</td><td><span class="fn">إضاءة بيضاء كاملة بأقصى سطوع.</span>
+    <span class="ex"><b>مثال:</b> إضاءة سريعة في الظلام أو للبحث عن شيء سقط.</span></td></tr>
+</table>
+<h3>أدوات عامة</h3>
+<table>
+  <tr><th>الأداة</th><th>ماذا تفعل · ومثال كيف تستفيد</th></tr>
+  <tr><td class="name">رمز QR</td><td><span class="fn">يولّد رمز QR يُمسح بالهاتف.</span>
+    <span class="ex"><b>مثال:</b> تشارك رابطاً أو نصاً بسرعة — أيّ شخص يصوّره بكاميرته ويفتحه.</span></td></tr>
+  <tr><td class="name">مؤقت</td><td><span class="fn">ساعة إيقاف (ابدأ/وقف/تصفير).</span>
+    <span class="ex"><b>مثال:</b> توقيت تجربة معملية، تمرين رياضي، أو أي مهمة.</span></td></tr>
+  <tr><td class="name">أفعى</td><td><span class="fn">لعبة الأفعى الكلاسيكية باللمس.</span>
+    <span class="ex"><b>مثال:</b> تسلية سريعة أثناء الانتظار.</span></td></tr>
+  <tr><td class="name">ملفات SD</td><td><span class="fn">مستعرض ملفات بطاقة microSD.</span>
+    <span class="ex"><b>مثال:</b> تتصفّح نتائج الفحوصات المحفوظة (CSV) على الجهاز مباشرة قبل نقلها للكمبيوتر.</span></td></tr>
+  <tr><td class="name">ساعة ومنبّه</td><td><span class="fn">ساعة + منبّه قابل للضبط.</span>
+    <span class="ex"><b>مثال:</b> تستعمل الجهاز كساعة مكتب مع منبّه.</span></td></tr>
+  <tr><td class="name">خيارات الأدوات</td><td><span class="fn">إعدادات عامة تتحكّم في كل أدوات الفحص.</span>
+    <span class="ex"><b>مثال:</b> تطوّل مدة المسح لدقّة أعلى، تثبّت قناة معيّنة، أو تفعّل الحفظ التلقائي للنتائج على SD.</span></td></tr>
+</table>
+
+<!-- 8 -->
+<div class="break"></div>
+<h2 id="s8">8 · المختبر المتقدم <span class="lead">(26 أداة)</span></h2>
+<p>قسم للمستخدم المتقدّم، مقسّم إلى 4 مجموعات. كل أداة تضبط مدخلاتها باللمس ثم «بدء»، والنتائج قابلة للحفظ على SD.</p>
+
+<h3>أ) فحص الاتصال</h3>
+<p>جودة اتصال WiFi · اقتراح أفضل قناة · زمن اتصال TCP · توفّر HTTP · تعريف الخدمة (banner) · اختبار وقت NTP.</p>
+<p class="ex" style="color:var(--cyan)"><b>مثال:</b> قبل بثّ مباشر أو مكالمة مهمة، تقيس استقرار اتصالك وزمن استجابة الخادم لتتأكد أنه كافٍ.</p>
+
+<h3>ب) DNS متقدم</h3>
+<p>سجلات AAAA / MX / TXT / NS · بحث عكسي · مقارنة بين خادمي DNS · اختبار استقرار DNS.</p>
+<p class="ex" style="color:var(--cyan)"><b>مثال:</b> تتحقق من إعدادات نطاق (دومين) تملكه — سجلات البريد MX أو التحقق TXT — من جهازك مباشرة.</p>
+
+<h3>ج) حساب الشبكات</h3>
+<p>حاسبة شبكة (IPv4/CIDR) · تصنيف عنوان · تداخل شبكتين · تنسيق IPv6 · تحليل عنوان MAC.</p>
+<p class="ex" style="color:var(--cyan)"><b>مثال:</b> تحسب نطاق العناوين وعدد الأجهزة الممكنة لشبكة <code>192.168.1.0/24</code> بسرعة، أو تعرف الشركة المصنّعة من عنوان MAC.</p>
+
+<h3>د) تحويل وتحقّق</h3>
+<p>توليد كلمة مرور قوية · Base64 · Hex · ترميز URL · بصمة نص SHA256 · بصمة ملف SHA256 (من SD) · توليد UUID · حاسبة زمن نقل ملف.</p>
+<p class="ex" style="color:var(--cyan)"><b>مثال:</b> تولّد كلمة مرور قوية فوراً، أو تحسب بصمة SHA256 لملف للتأكد أنه لم يُعدَّل (سلامة الملف).</p>
+
+<!-- 9 -->
+<div class="break"></div>
+<h2 id="s9">9 · الإعدادات وحفظ النتائج</h2>
+<h3>الإعدادات</h3>
+<table>
+  <tr><th>الإعداد</th><th>الوظيفة</th></tr>
+  <tr><td class="name">السطوع</td><td>شريط لمس يغيّر إضاءة الشاشة مباشرة.</td></tr>
+  <tr><td class="name">الثيم (اللون)</td><td>4 ألوان: هكر (أخضر غامق، الافتراضي) / أخضر / سماوي / كهرماني.</td></tr>
+  <tr><td class="name">ترتيب الألوان</td><td>إذا ظهرت ألوان شاشتك معكوسة، بدّل بين الأوضاع حتى تصبح صحيحة (بعض نسخ الشاشة ترتيبها مختلف).</td></tr>
+  <tr><td class="name">معايرة اللمس</td><td>المس نقاطاً محددة لضبط دقّة اللمس وحفظها.</td></tr>
+  <tr><td class="name">خيارات الأدوات</td><td>تحكّم موحّد: مدة المسح، القناة، أدنى إشارة، تحديث تلقائي، حفظ تلقائي، المنبّه.</td></tr>
+</table>
+<h3>حفظ النتائج على SD</h3>
+<p>معظم الأدوات فيها زر <b>«حفظ SD»</b> (أو حفظ تلقائي). تُحفظ النتائج ملفات <b>CSV</b> منظّمة (شبكات،
+أجهزة بلوتوث، حركة، نتائج المختبر المتقدم) يمكن تصفّحها من «ملفات SD» أو فتحها على الكمبيوتر في Excel.</p>
+<p class="ex" style="color:var(--cyan)"><b>مثال:</b> تمسح شبكات حيّك مرّة في اليوم مع الحفظ التلقائي، فتبني سجلاً زمنياً تعرف منه الشبكات الجديدة.</p>
+
+<!-- 10 -->
+<h2 id="s10">10 · ملاحظات تقنية والترخيص</h2>
+<ul>
+  <li><b>ترتيب ألوان الشاشة:</b> بعض نسخ CYD ترتيب بايتات اللون فيها مختلف؛ الحل خيار «ترتيب الألوان» في الإعدادات — بدّل حتى يصير أخضر على أسود.</li>
+  <li><b>الواجهة العربية:</b> محرّك تشكيل وربط حروف واتجاه يمين-لليسار مكتوب للمشروع، بخطّين عربيين.</li>
+  <li><b>استرجاع النسخة الأصلية:</b> لو كان على لوحتك فيرموير سابق، احفظه قبل الرفع ويمكن إعادته لاحقاً
+  (نسخة احتياطية من الفلاش الكامل) بـ <code>python -m esptool --port COM4 write_flash 0 backup/original_firmware_4MB.bin</code>.</li>
+</ul>
+<div class="box alert">
+  <h3>تنبيه قانوني</h3>
+  <p>الاستقبال والرصد مسموح في معظم الدول، لكن اعتراض أو فك اتصالات الآخرين قد يكون مخالفاً. استعمل الأداة
+  على أجهزتك وشبكاتك فقط. لا يحتوي الفيرموير أي مسار هجومي.</p>
+</div>
+
+<div class="foot">
+  CYBERCORE v2.0.0 — أداة أمن شبكات دفاعية · واجهة عربية كاملة · ESP32 CYD<br>
+  دليل الاستعمال — الواجهة والأدوات وأمثلة الفائدة
+</div>
+</div>
+</body>
+</html>
